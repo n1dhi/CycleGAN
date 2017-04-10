@@ -1,6 +1,7 @@
 -- usage example: DATA_ROOT=/path/to/data/ which_direction=BtoA name=expt1 th train.lua
--- code derived from https://github.com/soumith/dcgan.torch and https://github.com/phillipi/pix2pix
+-- code derived from https://github.com/soumith/dcgan.torch and https://github.com/philli
 
+--from lasagne.layers import batch_norm
 require 'torch'
 require 'nn'
 require 'optim'
@@ -9,6 +10,7 @@ content = paths.dofile('util/content_loss.lua')
 require 'image'
 require 'models.architectures'
 
+unpack = unpack or table.unpack
 -- load configuration file
 options = require 'options'
 opt = options.parse_options('train')
@@ -16,6 +18,7 @@ opt = options.parse_options('train')
 -- setup visualization
 if opt.display_id > 0 then
   disp = require 'display'
+  disp.configure({hostname=opt.ip,port=opt.port})
   visualizer = require 'util/visualizer'
 end
 
